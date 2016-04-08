@@ -14,22 +14,7 @@ namespace Jewelry_Application
     enum CategoryJewelry {
         Female, Male,Children
     }
-
-    /// <summary>
-    /// Type of Jewelry material
-    /// </summary>
-    enum MaterialJewelry
-    {
-        Crystal,Terracotta,Pearl,Bead,Silver,Gold,Platinum
-    }
-
-    /// <summary>
-    /// Type or kind of Jewelry 
-    /// </summary>
-    enum TypeJewelry
-    {
-        Chain,Pendant,Earrings,Bracelet,Earstud,Anklet,Ring,Set
-    }
+    
     #endregion
 
     /// <summary>
@@ -37,43 +22,48 @@ namespace Jewelry_Application
     /// </summary>
     class Jewelry
     {
+        #region Variables
+        private static int lastJewelryId=0;
+        #endregion
+
+
         #region Properties
         public int JewelryId { get; private set; }
         public String JewelryDesc{ get; set; }
-        public MaterialJewelry JewelryMaterial { get; set; }
-        public TypeJewelry JewelryType { get; set; }
+        public String JewelryMaterial { get; set; }
+        public String JewelryType { get; set; }
         public double JewelryPrice { get; private set; }
         public CategoryJewelry JewelryCategory { get; set; }
         public double JewelryDiscount { get; private set; }
         #endregion
 
+        #region Constructor
+        public Jewelry(double price) {
+
+            JewelryId = ++lastJewelryId;
+            this.JewelryPrice = price;
+        }
+
+        public Jewelry(int price,int discount)
+        {
+
+            JewelryId = ++lastJewelryId;
+            this.JewelryPrice = price;
+            this.JewelryDiscount = discount;
+        }
+        #endregion 
 
         #region Methods
         
-        /// <summary>
-        /// To set the id of an item
-        /// </summary>
-        public double SetId(int Id) {
-            this.JewelryId = Id;
-            return this.JewelryId;
-        }
-
-        /// <summary>
-        /// To set the price of an item
-        /// </summary>
-        public double SetPrice(double Price) {
-            this.JewelryPrice = Price;
-            return this.JewelryPrice;
-        }
 
         /// <summary>
         /// To set the discount of an item
         /// </summary>
-        public double SetDiscount(double Discount) {
+        public void SetDiscount(double Discount) {
             this.JewelryDiscount = Discount;
-            return this.JewelryDiscount;
+          
         }
-
+       
         /// <summary>
         /// To apply discount to an item
         /// </summary>
@@ -81,8 +71,9 @@ namespace Jewelry_Application
 
             if(this.JewelryDiscount > 0)
             {
-                Console.WriteLine(" Applying {0:p} discount to Jewelry Id: {1:d5} , Jewelry Name: {2} ", this.JewelryDiscount, this.JewelryId, this.JewelryDesc);
+                Console.WriteLine("Applying {0:p} discount to Jewelry Id: {1} , Jewelry Name: {2} ", this.JewelryDiscount, this.JewelryId, this.JewelryDesc);
                 this.JewelryPrice = this.JewelryPrice - (this.JewelryPrice * (this.JewelryDiscount));
+               
                 PrintPrice();
             }
            
@@ -93,7 +84,7 @@ namespace Jewelry_Application
         /// Print a jewelry's details
         /// </summary> 
         public void PrintDetails() {
-            Console.WriteLine(" Jewelry Id: {0:d5} \n Jewelry Name: {1} \n Jewelry Material: {2} \n "+
+            Console.WriteLine(" Jewelry Id: {0} \n Jewelry Name: {1} \n Jewelry Material: {2} \n "+
                 "JewelryType: {3} \n JewelryPrice: {4:c} \n Jewelry Category: {5} \n Jewelry Discount: {6:p} \n", 
                 this.JewelryId, this.JewelryDesc, this.JewelryMaterial,
                 this.JewelryType, this.JewelryPrice, this.JewelryCategory, this.JewelryDiscount
@@ -106,6 +97,11 @@ namespace Jewelry_Application
         public void PrintPrice()
         {
             Console.WriteLine(" Jewelry Price: {0:c}  \n",  this.JewelryPrice);
+        }
+
+        public double GetPrice() {
+            return this.JewelryPrice;
+
         }
 
 
