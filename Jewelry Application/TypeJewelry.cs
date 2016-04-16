@@ -12,14 +12,14 @@ namespace Jewelry_Application
     static class TypeJewelry
     {
 
-        static public String Chain = "Chain";
-        static public String Pendant = "Pendant";
-        static public String Earrings = "Earrings";
-        static public String Bracelet = "Bracelet";
-        static public String Earstud = "Earstud";
-        static public String Anklet = "Anklet";
-        static public String Ring = "Ring";
-        static public String Set = "Set";
+        static public string Chain = "Chain";
+        static public string Pendant = "Pendant";
+        static public string Earrings = "Earrings";
+        static public string Bracelet = "Bracelet";
+        static public string Earstud = "Earstud";
+        static public string Anklet = "Anklet";
+        static public string Ring = "Ring";
+        static public string Set = "Set";
 
       
     }

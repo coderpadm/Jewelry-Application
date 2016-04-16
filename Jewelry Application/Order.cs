@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Jewelry_Application
 {
-    class Order
+    public class Order
     {
 
         #region Variables

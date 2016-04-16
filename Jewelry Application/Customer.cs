@@ -12,7 +12,7 @@ namespace Jewelry_Application
     /// <summary>
     /// Gender
     /// </summary>
-    enum CategoryGender
+    public enum CategoryGender
     {
         Female, Male
     }
@@ -21,7 +21,7 @@ namespace Jewelry_Application
     /// <summary>
     /// This is a Customer class.
     /// </summary>
-    class Customer
+    public class Customer
     {
         #region Variables
         private static int lastCustomerId = 0;
@@ -29,19 +29,19 @@ namespace Jewelry_Application
 
         #region Properties
         public int CustomerId { get; private set; }
-        public String CustomerFirstName { get; set; }
-        public String CustomerLastName { get; set; }
+        public string CustomerFirstName { get; set; }
+        public string CustomerLastName { get; set; }
         public Order[] CustomerOrder { get; private set; }
         public int[] CustomerOrderIds { get; private set; }
-        public String CustomerAddress { get; set; }
-        public String CustomerPhoneNumber { get; set; }
+        public string CustomerAddress { get; set; }
+        public string CustomerPhoneNumber { get; set; }
         public CategoryGender CustomerGender { get; set; }
         public DateTime CustomerSince { get; private set; }
         
         #endregion
 
         #region Constructor
-        public Customer(String firstName, String lastName) {
+        public Customer(string firstName, string lastName) {
             this.CustomerId = ++lastCustomerId;
             this.CustomerSince = DateTime.Today;
             this.CustomerFirstName = firstName;
@@ -62,7 +62,8 @@ namespace Jewelry_Application
 
         Console.WriteLine(" Customer Id: {0} \n First Name: {1} \n Last Name: {2} \n " +
                 "OrderIds: {3} \n Address: {4} \n PhoneNumber: {5} \n Gender: {6} \n Customer Since: {7:d} \n",
-                this.CustomerId, this.CustomerFirstName,this.CustomerLastName,(this.CustomerOrderIds==null)?"Not available":String.Join(",",this.CustomerOrderIds),
+                this.CustomerId, this.CustomerFirstName,this.CustomerLastName,
+                (this.CustomerOrderIds==null)?"Not available":string.Join(",",this.CustomerOrderIds),
                 this.CustomerAddress, this.CustomerPhoneNumber,this.CustomerGender,this.CustomerSince.Date
                 );
 

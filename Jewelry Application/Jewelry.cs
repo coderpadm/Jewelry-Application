@@ -11,7 +11,7 @@ namespace Jewelry_Application
     /// <summary>
     /// Jewelry categorization
     /// </summary>
-    enum CategoryJewelry {
+    public enum CategoryJewelry {
         Female, Male,Children
     }
     
@@ -20,7 +20,7 @@ namespace Jewelry_Application
     /// <summary>
     /// This class is used to store Jewelry details
     /// </summary>
-    class Jewelry
+    public class Jewelry
     {
         #region Variables
         private static int lastJewelryId=0;
@@ -29,9 +29,9 @@ namespace Jewelry_Application
 
         #region Properties
         public int JewelryId { get; private set; }
-        public String JewelryDesc{ get; set; }
-        public String JewelryMaterial { get; set; }
-        public String JewelryType { get; set; }
+        public string JewelryDesc{ get; set; }
+        public string JewelryMaterial { get; set; }
+        public string JewelryType { get; set; }
         public double JewelryPrice { get; private set; }
         public CategoryJewelry JewelryCategory { get; set; }
         public double JewelryDiscount { get; private set; }

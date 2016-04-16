@@ -11,13 +11,13 @@ namespace Jewelry_Application
     /// </summary>
     static class MaterialJewelry
     {
-        static public String Crystal = "Crystal";
-        static public String Terracotta = "Terracotta";
-        static public String Pearl = "Pearl";
-        static public String Bead = "Bead";
-        static public String Silver = "Silver";
-        static public String Gold = "Gold";
-        static public String Platinum = "Platinum";
+        static public string Crystal = "Crystal";
+        static public string Terracotta = "Terracotta";
+        static public string Pearl = "Pearl";
+        static public string Bead = "Bead";
+        static public string Silver = "Silver";
+        static public string Gold = "Gold";
+        static public string Platinum = "Platinum";
 
          
     }
