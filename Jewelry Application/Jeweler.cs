@@ -8,6 +8,14 @@ namespace Jewelry_Application
 {
     public static class Jeweler
     {
+
+        #region Variables
+        public static List<Jewelry> jewelList = new List<Jewelry>();
+        public static List<Customer> custList = new List<Customer>();
+        public static List<Order> ordList = new List<Order>();
+        #endregion
+
+
         /// <summary>
         /// Adds a new piece of jewelry
         /// </summary>
@@ -28,6 +36,9 @@ namespace Jewelry_Application
                 JewelryType = jewelryType,
                 JewelryCategory = jewelryCategory            
             };
+
+            jewelList.Add(jewelry);
+
             return jewelry;
         }
 
@@ -50,6 +61,9 @@ namespace Jewelry_Application
                                 CustomerPhoneNumber=customerPhoneNumber,
                                 CustomerAddress=customerAddress
                            };
+
+            custList.Add(customer);
+
             return customer;
         }
 
@@ -57,11 +71,13 @@ namespace Jewelry_Application
         /// Creates a new order
         /// </summary>
         /// <param name="cust">Customer object</param>
-        /// <param name="jewArr">Jewelry object array</param>
+        /// <param name="jewList">Jewelry object list</param>
         /// <returns>Newly generated order</returns>
-        public static Order CreateNewOrder(Customer cust, Jewelry[] jewArr)
+        public static Order CreateNewOrder(Customer cust, List<Jewelry> jewList)
         {
-            Order ord =new Order(cust, jewArr);
+            Order ord =new Order(cust, jewList);
+            ordList.Add(ord);
+
             return ord;
         }
    }

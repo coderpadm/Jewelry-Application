@@ -71,34 +71,16 @@ namespace Jewelry_Application
 
             if(this.JewelryDiscount > 0)
             {
-                Console.WriteLine("Applying {0:p} discount to Jewelry Id: {1} , Jewelry Name: {2} ", this.JewelryDiscount, this.JewelryId, this.JewelryDesc);
-                this.JewelryPrice = this.JewelryPrice - (this.JewelryPrice * (this.JewelryDiscount));
+               this.JewelryPrice = this.JewelryPrice - (this.JewelryPrice * (this.JewelryDiscount));
                
-                PrintPrice();
+              
             }
-           
 
         }
 
         /// <summary>
-        /// Print a jewelry's details
-        /// </summary> 
-        public void PrintDetails() {
-            Console.WriteLine(" Jewelry Id: {0} \n Jewelry Name: {1} \n Jewelry Material: {2} \n "+
-                "JewelryType: {3} \n JewelryPrice: {4:c} \n Jewelry Category: {5} \n Jewelry Discount: {6:p} \n", 
-                this.JewelryId, this.JewelryDesc, this.JewelryMaterial,
-                this.JewelryType, this.JewelryPrice, this.JewelryCategory, this.JewelryDiscount
-                );
-
-        }
-        /// <summary>
-        /// To print the price of an item
+        /// To find a jewel's price
         /// </summary>
-        public void PrintPrice()
-        {
-            Console.WriteLine(" Jewelry Price: {0:c}  \n",  this.JewelryPrice);
-        }
-
         public double GetPrice() {
             return this.JewelryPrice;
 

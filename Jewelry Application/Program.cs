@@ -9,21 +9,25 @@ namespace Jewelry_Application
     class Program
     {
 
-       static void Main(string[] args)
+        static void Main(string[] args)
         {
             Console.WriteLine("**********Welcome to Creative Jewellers**********");
-            while (true)
+            string option;
+            do
             {
 
-            
-            Console.WriteLine("1. Add new jewelry");
-            Console.WriteLine("2. Add new customer");
-            Console.WriteLine("3. Place an order");
-            Console.WriteLine("0. Exit");
-            Console.WriteLine("Choose an option from above");
-    
-            var option = Console.ReadLine();
-               
+
+                Console.WriteLine("1. Add new jewelry");
+                Console.WriteLine("2. Add new customer");
+                Console.WriteLine("3. Place an order");
+                Console.WriteLine("4. Print jewelry information");
+                Console.WriteLine("5. Print customer information");
+                Console.WriteLine("6. Print orders");
+                Console.WriteLine("0. Exit");
+                Console.WriteLine("Choose an option from above");
+
+                option = Console.ReadLine();
+
 
 
                 switch (option)
@@ -38,7 +42,7 @@ namespace Jewelry_Application
                             "d. Bead \n" +
                             "e. Silver \n" +
                             "f. Gold \n" +
-                            "g. Platinum \n "
+                            "g. Platinum \n"
                             );
                         var matOption = Console.ReadLine();
 
@@ -48,14 +52,14 @@ namespace Jewelry_Application
                             (matOption.Equals("c") ? MaterialJewelry.Pearl :
                             (matOption.Equals("d") ? MaterialJewelry.Bead :
                             (matOption.Equals("e") ? MaterialJewelry.Crystal :
-                            (matOption.Equals("f") ? MaterialJewelry.Terracotta :
+                            (matOption.Equals("f") ? MaterialJewelry.Gold :
                             MaterialJewelry.Platinum
                             )))))), TypeJewelry.Set, 100.0, CategoryJewelry.Female);
 
-                        Jewelry1.PrintDetails();
                         Jewelry1.SetDiscount(.1);
                         Jewelry1.ApplyDiscount();
                         break;
+
                     case "2":
                         Console.Write("What is the first name of the customer? ");
                         var fName = Console.ReadLine();
@@ -70,62 +74,110 @@ namespace Jewelry_Application
                         var Customer1 = Jeweler.AddNewCustomer(fName, lName,
                             (genderCust.Equals("M") ? CategoryGender.Male :
                         CategoryGender.Female), phoneNo, addrDetails);
-                        Customer1.GetCustomerDetails();
                         break;
+
                     case "3":
-                        Console.Write("Creating a new customer and jewelry before placing an order");
+                        Console.Write("Creating a new customer and jewelry before placing an order \n");
 
                         var Jewelry2 = Jeweler.AddNewJewelry("Cool bead bracelet", MaterialJewelry.Bead,
                         TypeJewelry.Bracelet, 20.0, CategoryJewelry.Female);
-                        Jewelry2.PrintDetails();
 
-                     
                         var Customer2 = Jeweler.AddNewCustomer("Judy", "Stone", CategoryGender.Female, "", "");
-                       
 
-                        Jewelry[] jewOrd1 = { Jewelry2 };
-                        
-                         
+
+                        List<Jewelry> jewOrd1 = new List<Jewelry>();
+                        jewOrd1.Add(Jewelry2);
+
+
                         var Order1 = Jeweler.CreateNewOrder(Customer2, jewOrd1);
-                        Order1.GetOrderDetails();
-                        Customer2.GetCustomerDetails();
+
 
                         break;
+
+                    case "4":
+                        PrintJewelry();
+                        break;
+
+                    case "5":
+                        PrintCustomers();
+                        break;
+
+                    case "6":
+                        PrintOrders();
+                        break;
+
+
                     case "0":
+                        Console.WriteLine("Good bye!");
                         return;
-                       
+
                     default:
                         return;
                 }
 
+            } while (option != "0");
+
+        }
+
+        static void PrintJewelry()
+        {
+            if (Jeweler.jewelList.Count == 0)
+            {
+                Console.WriteLine("No jewelry information is available.");
             }
+            else
+            {
+                foreach (var jewel in Jeweler.jewelList)
+                {
+                    Console.WriteLine(" Jewelry Id: {0} \n Jewelry Name: {1} \n Jewelry Material: {2} \n " +
+                   "JewelryType: {3} \n JewelryPrice: {4:c} \n Jewelry Category: {5} \n Jewelry Discount: {6:p} \n",
+                   jewel.JewelryId, jewel.JewelryDesc, jewel.JewelryMaterial,
+                   jewel.JewelryType, jewel.JewelryPrice, jewel.JewelryCategory, jewel.JewelryDiscount
+                   );
 
+                }
+            }
+           
+        }
 
+        static void PrintCustomers()
+        {
+            if (Jeweler.custList.Count == 0)
+            {
+                Console.WriteLine("No customer information is available. ");
+            }
+            else
+            {
+                foreach (var cust in Jeweler.custList)
+                {
+                    Console.WriteLine(" Customer Id: {0} \n First Name: {1} \n Last Name: {2} \n " +
+                    "Address: {3} \n PhoneNumber: {4} \n Gender: {5} \n Customer Since: {6:d} \n",
+                    cust.CustomerId, cust.CustomerFirstName, cust.CustomerLastName,
+                    cust.CustomerAddress, cust.CustomerPhoneNumber, cust.CustomerGender, cust.CustomerSince.Date
+                    );
 
-            /*
-            var Jewelry1 = Jeweler.AddNewJewelry("Beautiful jewelry set", MaterialJewelry.Terracotta, 
-                TypeJewelry.Set, 100.0,CategoryJewelry.Female);
-            Jewelry1.PrintDetails();
-            Jewelry1.SetDiscount(.1);
-            Jewelry1.ApplyDiscount();
+                }
+            }
+           
+        }
 
-            var Jewelry2 = Jeweler.AddNewJewelry("Cool bead bracelet", MaterialJewelry.Bead,
-                TypeJewelry.Bracelet, 20.0, CategoryJewelry.Female);
-            Jewelry2.PrintDetails();
+        static void PrintOrders()
+        {
 
-            var Customer1=Jeweler.AddNewCustomer("John", "Doe", CategoryGender.Male,
-                "555-555-5555", "#10, Bellevue way, Bellevue, WA");
-            var Customer2 = Jeweler.AddNewCustomer("Judy", "Stone", CategoryGender.Female, "", "");
-            Customer1.GetCustomerDetails();
-            Customer2.GetCustomerDetails();
-
-            Jewelry[] jewOrd1 = { Jewelry1 };
-            Jewelry[] jewOrd2 = { Jewelry1, Jewelry2 };
-
-            var Order1 = Jeweler.CreateNewOrder(Customer1, jewOrd2);
-            Order1.GetOrderDetails();
-            Customer1.GetCustomerDetails();
-     */
+            if (Jeweler.ordList.Count == 0)
+            {
+                Console.WriteLine("No orders were received. ");
+            }
+            else
+            {
+                foreach (var ord in Jeweler.ordList)
+                 {
+                    Console.WriteLine(" Order Id: {0} \n Customer Id: {1} \n " +
+                    "Order Bought Date and Time: {2} \n Order Discount: {3:p} \n Order Total: {4:c} \n",
+                    ord.OrderId, ord.OrderCustomer.CustomerId,
+                    ord.OrderBoughtDateTime, ord.OrderDiscount, ord.OrderTotal);
+                }
+            }
         }
     }
 }

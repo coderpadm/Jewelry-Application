@@ -15,78 +15,43 @@ namespace Jewelry_Application
 
         #region Properties
         public int OrderId { get; private set; }
-        public int[] OrderJewelryIds { get; private set; }
-        public Jewelry[] OrderJewelryDetails { get; set; }
+        public List<Jewelry> OrderJewelryDetails { get; set; }
         public DateTime OrderBoughtDateTime { get; private set; }
-       
         public double OrderTotal { get; set; }
         public int OrderDiscount { get; set; }
         public Customer OrderCustomer { get; set; }
-        public int OrderCustomerId { get; private set; }
-
+       
         #endregion
 
         #region Constructor
-        public Order(Customer cust, Jewelry[] jewelryOrderedArr) {
+        public Order(Customer cust, List<Jewelry> jewelryList) {
             this.OrderId = ++lastOrderId;
             this.OrderBoughtDateTime = DateTime.Now;
             this.OrderCustomer = cust;
-            
-            this.OrderJewelryDetails = jewelryOrderedArr;
-            SetCustomerId();
-            SetJewelryIds(this.OrderJewelryDetails);
-            
-            cust.ProcessOrder(this);
+            this.OrderJewelryDetails = jewelryList;
+            this.OrderTotal = setOrderTotal(jewelryList);
+           
         }
         #endregion
 
         #region Methods
-
         /// <summary>
-        /// To set the Customer's id
+        /// To compute the total of an order
         /// </summary>
-        private void SetCustomerId() {
-           
-            this.OrderCustomerId = this.OrderCustomer.CustomerId;
-           
-        }
-        /// <summary>
-        /// Print an order's details
-        /// </summary>
-        public void GetOrderDetails() {
-            Console.WriteLine(" Order Id: {0} \n Jewelry Ids: {1} \n CustomerId: {2} \n " +
-                "Order Bought Date and Time: {3} \n Order Discount: {4:p} \n Order Total: {5:c} \n",
-               this.OrderId, (this.OrderJewelryIds==null)?"Not available":string.Join(", ", this.OrderJewelryIds), this.OrderCustomerId,
-               this.OrderBoughtDateTime,this.OrderDiscount,this.OrderTotal);
-            
-        }
-
-        /// <summary>
-        /// To set the Jewelry ids
-        /// </summary>
-        /// <param name="jewArr"></param>
-        private void SetJewelryIds(Jewelry[] jewArr)
-        {
-           
-            int len = jewArr.Length;
+        /// <param name="jewList">List of Jewelry items</param>
+        /// <returns>Specifies the order's total</returns>
+        private double setOrderTotal(List<Jewelry> jewList) {
             double total = 0.0;
-            if ( len> 0)
+            if (jewList.Count > 0)
             {
-                int[] jewIdArr = new int[len];
-                for(int i=0; i< len;i++)
+                foreach (var jewel in jewList)
                 {
-                    jewIdArr[i] = jewArr[i].JewelryId;
-                    total += jewArr[i].GetPrice();
-
+                    total += jewel.GetPrice();
                 }
-                this.OrderJewelryIds = jewIdArr;
-                this.OrderTotal = total;
-                
             }
+            return total;
 
-            
         }
-
         
         #endregion
     }
