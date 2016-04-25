@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,6 +29,10 @@ namespace Jewelry_Application
         #endregion
 
         #region Properties
+        /// <summary>
+        /// Customer id of a customer
+        /// </summary>
+        [Key]
         public int CustomerId { get; private set; }
         public string CustomerFirstName { get; set; }
         public string CustomerLastName { get; set; }

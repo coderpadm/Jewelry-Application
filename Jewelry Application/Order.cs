@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,10 @@ namespace Jewelry_Application
         #endregion
 
         #region Properties
+        /// <summary>
+        /// Order id of an order
+        /// </summary>
+        [Key]
         public int OrderId { get; private set; }
         public List<Jewelry> OrderJewelryDetails { get; set; }
         public DateTime OrderBoughtDateTime { get; private set; }

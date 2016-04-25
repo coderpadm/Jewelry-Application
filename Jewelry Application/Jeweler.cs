@@ -10,9 +10,7 @@ namespace Jewelry_Application
     {
 
         #region Variables
-        public static List<Jewelry> jewelList = new List<Jewelry>();
-        public static List<Customer> custList = new List<Customer>();
-        public static List<Order> ordList = new List<Order>();
+        private static JewelerModel db = new JewelerModel();
         #endregion
 
 
@@ -34,10 +32,11 @@ namespace Jewelry_Application
                 JewelryDesc = jewelryDesc,
                 JewelryMaterial = jewelryMaterial,
                 JewelryType = jewelryType,
-                JewelryCategory = jewelryCategory            
+                JewelryCategory = jewelryCategory
             };
-
-            jewelList.Add(jewelry);
+            
+            db.Jewels.Add(jewelry);
+            db.SaveChanges();
 
             return jewelry;
         }
@@ -56,13 +55,14 @@ namespace Jewelry_Application
         {
             //Initializer for customer
             var customer = new Customer(customerFirstName, customerLastName)
-                           {
-                                CustomerGender=customerGender,
-                                CustomerPhoneNumber=customerPhoneNumber,
-                                CustomerAddress=customerAddress
-                           };
+            {
+                CustomerGender = customerGender,
+                CustomerPhoneNumber = customerPhoneNumber,
+                CustomerAddress = customerAddress
+            };
 
-            custList.Add(customer);
+            db.Customers.Add(customer);
+            db.SaveChanges();
 
             return customer;
         }
@@ -75,11 +75,12 @@ namespace Jewelry_Application
         /// <returns>Newly generated order</returns>
         public static Order CreateNewOrder(Customer cust, List<Jewelry> jewList)
         {
-            Order ord =new Order(cust, jewList);
-            ordList.Add(ord);
+            Order ord = new Order(cust, jewList);
 
+            db.Orders.Add(ord);
+            db.SaveChanges();
             return ord;
         }
-   }
+    }
 }
 

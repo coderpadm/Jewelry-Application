@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,7 +29,12 @@ namespace Jewelry_Application
 
 
         #region Properties
+        /// <summary>
+        /// JewelryId of a piece of jewelry
+        /// </summary>
+        [Key]
         public int JewelryId { get; private set; }
+        [StringLength(25, ErrorMessage = "The Jewelry name cannot be more than 25 characters in length")]
         public string JewelryDesc{ get; set; }
         public string JewelryMaterial { get; set; }
         public string JewelryType { get; set; }

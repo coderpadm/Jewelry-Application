@@ -17,8 +17,8 @@ namespace Jewelry_Application
             {
 
 
-                Console.WriteLine("1. Add new jewelry");
-                Console.WriteLine("2. Add new customer");
+                Console.WriteLine("1. Add a new jewel");
+                Console.WriteLine("2. Add a new customer");
                 Console.WriteLine("3. Place an order");
                 Console.WriteLine("4. Print jewelry information");
                 Console.WriteLine("5. Print customer information");
@@ -56,8 +56,8 @@ namespace Jewelry_Application
                             MaterialJewelry.Platinum
                             )))))), TypeJewelry.Set, 100.0, CategoryJewelry.Female);
 
-                        Jewelry1.SetDiscount(.1);
-                        Jewelry1.ApplyDiscount();
+                      //  Jewelry1.SetDiscount(.1);
+                      //  Jewelry1.ApplyDiscount();
                         break;
 
                     case "2":
@@ -79,10 +79,10 @@ namespace Jewelry_Application
                     case "3":
                         Console.Write("Creating a new customer and jewelry before placing an order \n");
 
-                        var Jewelry2 = Jeweler.AddNewJewelry("Cool bead bracelet", MaterialJewelry.Bead,
+                        var Jewelry2 = Jeweler.AddNewJewelry("Another bead bracelet", MaterialJewelry.Bead,
                         TypeJewelry.Bracelet, 20.0, CategoryJewelry.Female);
 
-                        var Customer2 = Jeweler.AddNewCustomer("Judy", "Stone", CategoryGender.Female, "", "");
+                        var Customer2 = Jeweler.AddNewCustomer("Molly", "Chang", CategoryGender.Female, "", "");
 
 
                         List<Jewelry> jewOrd1 = new List<Jewelry>();
@@ -95,15 +95,15 @@ namespace Jewelry_Application
                         break;
 
                     case "4":
-                        PrintJewelry();
+                   //     PrintJewelry();
                         break;
 
                     case "5":
-                        PrintCustomers();
+                   //     PrintCustomers();
                         break;
 
                     case "6":
-                        PrintOrders();
+                   //     PrintOrders();
                         break;
 
 
@@ -119,65 +119,65 @@ namespace Jewelry_Application
 
         }
 
-        static void PrintJewelry()
-        {
-            if (Jeweler.jewelList.Count == 0)
-            {
-                Console.WriteLine("No jewelry information is available.");
-            }
-            else
-            {
-                foreach (var jewel in Jeweler.jewelList)
-                {
-                    Console.WriteLine(" Jewelry Id: {0} \n Jewelry Name: {1} \n Jewelry Material: {2} \n " +
-                   "JewelryType: {3} \n JewelryPrice: {4:c} \n Jewelry Category: {5} \n Jewelry Discount: {6:p} \n",
-                   jewel.JewelryId, jewel.JewelryDesc, jewel.JewelryMaterial,
-                   jewel.JewelryType, jewel.JewelryPrice, jewel.JewelryCategory, jewel.JewelryDiscount
-                   );
+        //static void PrintJewelry()
+        //{
+        //    if (Jeweler.jewelList.Count == 0)
+        //    {
+        //        Console.WriteLine("No jewelry information is available.");
+        //    }
+        //    else
+        //    {
+        //        foreach (var jewel in Jeweler.jewelList)
+        //        {
+        //            Console.WriteLine(" Jewelry Id: {0} \n Jewelry Name: {1} \n Jewelry Material: {2} \n " +
+        //           "JewelryType: {3} \n JewelryPrice: {4:c} \n Jewelry Category: {5} \n Jewelry Discount: {6:p} \n",
+        //           jewel.JewelryId, jewel.JewelryDesc, jewel.JewelryMaterial,
+        //           jewel.JewelryType, jewel.JewelryPrice, jewel.JewelryCategory, jewel.JewelryDiscount
+        //           );
 
-                }
-            }
+        //        }
+        //    }
            
-        }
+        //}
 
-        static void PrintCustomers()
-        {
-            if (Jeweler.custList.Count == 0)
-            {
-                Console.WriteLine("No customer information is available. ");
-            }
-            else
-            {
-                foreach (var cust in Jeweler.custList)
-                {
-                    Console.WriteLine(" Customer Id: {0} \n First Name: {1} \n Last Name: {2} \n " +
-                    "Address: {3} \n PhoneNumber: {4} \n Gender: {5} \n Customer Since: {6:d} \n",
-                    cust.CustomerId, cust.CustomerFirstName, cust.CustomerLastName,
-                    cust.CustomerAddress, cust.CustomerPhoneNumber, cust.CustomerGender, cust.CustomerSince.Date
-                    );
+        //static void PrintCustomers()
+        //{
+        //    if (Jeweler.custList.Count == 0)
+        //    {
+        //        Console.WriteLine("No customer information is available. ");
+        //    }
+        //    else
+        //    {
+        //        foreach (var cust in Jeweler.custList)
+        //        {
+        //            Console.WriteLine(" Customer Id: {0} \n First Name: {1} \n Last Name: {2} \n " +
+        //            "Address: {3} \n PhoneNumber: {4} \n Gender: {5} \n Customer Since: {6:d} \n",
+        //            cust.CustomerId, cust.CustomerFirstName, cust.CustomerLastName,
+        //            cust.CustomerAddress, cust.CustomerPhoneNumber, cust.CustomerGender, cust.CustomerSince.Date
+        //            );
 
-                }
-            }
+        //        }
+        //    }
            
-        }
+        //}
 
-        static void PrintOrders()
-        {
+        //static void PrintOrders()
+        //{
 
-            if (Jeweler.ordList.Count == 0)
-            {
-                Console.WriteLine("No orders were received. ");
-            }
-            else
-            {
-                foreach (var ord in Jeweler.ordList)
-                 {
-                    Console.WriteLine(" Order Id: {0} \n Customer Id: {1} \n " +
-                    "Order Bought Date and Time: {2} \n Order Discount: {3:p} \n Order Total: {4:c} \n",
-                    ord.OrderId, ord.OrderCustomer.CustomerId,
-                    ord.OrderBoughtDateTime, ord.OrderDiscount, ord.OrderTotal);
-                }
-            }
-        }
+        //    if (Jeweler.ordList.Count == 0)
+        //    {
+        //        Console.WriteLine("No orders were received. ");
+        //    }
+        //    else
+        //    {
+        //        foreach (var ord in Jeweler.ordList)
+        //         {
+        //            Console.WriteLine(" Order Id: {0} \n Customer Id: {1} \n " +
+        //            "Order Bought Date and Time: {2} \n Order Discount: {3:p} \n Order Total: {4:c} \n",
+        //            ord.OrderId, ord.OrderCustomer.CustomerId,
+        //            ord.OrderBoughtDateTime, ord.OrderDiscount, ord.OrderTotal);
+        //        }
+        //    }
+        //}
     }
 }
