@@ -41,9 +41,13 @@ namespace Jewelry_Application
         public double JewelryPrice { get; private set; }
         public CategoryJewelry JewelryCategory { get; set; }
         public double JewelryDiscount { get; private set; }
+        public string JewelryCode { get; set; }
         #endregion
 
         #region Constructor
+        public Jewelry()
+        { }
+
         public Jewelry(double price) {
 
             JewelryId = ++lastJewelryId;

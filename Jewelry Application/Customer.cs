@@ -40,10 +40,14 @@ namespace Jewelry_Application
         public string CustomerPhoneNumber { get; set; }
         public CategoryGender CustomerGender { get; set; }
         public DateTime CustomerSince { get; private set; }
+        public string CustomerEmail { get; set; }
+        public virtual ICollection<Order> Orders { get; set; }
         
         #endregion
 
         #region Constructor
+        public Customer() { }
+
         public Customer(string firstName, string lastName) {
             this.CustomerId = ++lastCustomerId;
             this.CustomerSince = DateTime.Today;

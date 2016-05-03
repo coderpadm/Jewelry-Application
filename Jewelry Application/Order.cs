@@ -20,22 +20,23 @@ namespace Jewelry_Application
         /// </summary>
         [Key]
         public int OrderId { get; private set; }
-        public List<Jewelry> OrderJewelryDetails { get; set; }
         public DateTime OrderBoughtDateTime { get; private set; }
         public double OrderTotal { get; set; }
         public int OrderDiscount { get; set; }
-        public Customer OrderCustomer { get; set; }
-       
+        public virtual Customer Customer { get; set; }
+        public virtual ICollection<Jewelry> Jewels { get; set; }
+
         #endregion
 
         #region Constructor
-        public Order(Customer cust, List<Jewelry> jewelryList) {
+        public Order(Customer cust, List<Jewelry> jewelryList)
+        {
             this.OrderId = ++lastOrderId;
             this.OrderBoughtDateTime = DateTime.Now;
-            this.OrderCustomer = cust;
-            this.OrderJewelryDetails = jewelryList;
+            this.Customer = cust;
+            this.Jewels = jewelryList;
             this.OrderTotal = setOrderTotal(jewelryList);
-           
+
         }
         #endregion
 
@@ -45,19 +46,21 @@ namespace Jewelry_Application
         /// </summary>
         /// <param name="jewList">List of Jewelry items</param>
         /// <returns>Specifies the order's total</returns>
-        private double setOrderTotal(List<Jewelry> jewList) {
+        private double setOrderTotal(List<Jewelry> jewList)
+        {
             double total = 0.0;
             if (jewList.Count > 0)
             {
                 foreach (var jewel in jewList)
                 {
                     total += jewel.GetPrice();
+                    
                 }
             }
             return total;
 
         }
-        
+
         #endregion
     }
 }

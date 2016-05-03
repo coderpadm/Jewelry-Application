@@ -22,9 +22,10 @@ namespace Jewelry_Application
         /// <param name="jewelryType">Type of the jewelry</param>
         /// <param name="jewelryPrice">Price of the jewelry</param>
         /// <param name="jewelryCategory">Category of the jewelry</param>
+        /// <param name="jewelryCode">Code of the jewelry</param>
         /// <returns>Newly created jewelry</returns>
         public static Jewelry AddNewJewelry(string jewelryDesc, string jewelryMaterial,
-            string jewelryType, double jewelryPrice, CategoryJewelry jewelryCategory)
+            string jewelryType, double jewelryPrice, CategoryJewelry jewelryCategory, string jewelryCode)
         {
             //Initializer for jewelry
             var jewelry = new Jewelry(jewelryPrice)
@@ -32,9 +33,10 @@ namespace Jewelry_Application
                 JewelryDesc = jewelryDesc,
                 JewelryMaterial = jewelryMaterial,
                 JewelryType = jewelryType,
-                JewelryCategory = jewelryCategory
+                JewelryCategory = jewelryCategory,
+                JewelryCode=jewelryCode
             };
-            
+
             db.Jewels.Add(jewelry);
             db.SaveChanges();
 
@@ -49,22 +51,39 @@ namespace Jewelry_Application
         /// <param name="customerGender">Customer's gender</param>
         /// <param name="customerPhoneNumber">Customer's phone number</param>
         /// <param name="customerAddress">Customer's address</param>
+        /// <param name="customerEmail">Customer's email address</param>
         /// <returns>Newly added customer</returns>
         public static Customer AddNewCustomer(string customerFirstName, string customerLastName,
-            CategoryGender customerGender, string customerPhoneNumber, string customerAddress)
+            CategoryGender customerGender, string customerPhoneNumber, string customerAddress, string customerEmail)
         {
             //Initializer for customer
             var customer = new Customer(customerFirstName, customerLastName)
             {
                 CustomerGender = customerGender,
                 CustomerPhoneNumber = customerPhoneNumber,
-                CustomerAddress = customerAddress
+                CustomerAddress = customerAddress,
+                CustomerEmail = customerEmail
             };
 
             db.Customers.Add(customer);
             db.SaveChanges();
 
             return customer;
+        }
+        /// <summary>
+        ///Searches for a customer
+        /// </summary>
+        /// <param name="email">Customer's email address</param>
+        /// <returns>Customer object associated with that email address</returns>
+        public static Customer FindCustomer(string email)
+        {
+
+            return db.Customers.Where(a => a.CustomerEmail == email).FirstOrDefault();
+        }
+
+        public static Jewelry FindJewel(string jewelCode)
+        {
+            return db.Jewels.Where(j => j.JewelryCode == jewelCode).FirstOrDefault();
         }
 
         /// <summary>
