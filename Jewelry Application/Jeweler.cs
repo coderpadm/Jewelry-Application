@@ -81,6 +81,11 @@ namespace Jewelry_Application
             return db.Customers.Where(a => a.CustomerEmail == email).FirstOrDefault();
         }
 
+        /// <summary>
+        /// Searches for a jewel
+        /// </summary>
+        /// <param name="jewelCode">Jewelry's code</param>
+        /// <returns>Jewelry object associated with that jewel code</returns>
         public static Jewelry FindJewel(string jewelCode)
         {
             return db.Jewels.Where(j => j.JewelryCode == jewelCode).FirstOrDefault();
