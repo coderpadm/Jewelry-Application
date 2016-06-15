@@ -49,7 +49,7 @@ namespace Jewelry_Application
         public Customer() { }
 
         public Customer(string firstName, string lastName) {
-            this.CustomerId = ++lastCustomerId;
+        //    this.CustomerId = ++lastCustomerId;
             this.CustomerSince = DateTime.Today;
             this.CustomerFirstName = firstName;
             this.CustomerLastName = lastName;

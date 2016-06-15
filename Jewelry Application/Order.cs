@@ -31,7 +31,7 @@ namespace Jewelry_Application
         #region Constructor
         public Order(Customer cust, List<Jewelry> jewelryList)
         {
-            this.OrderId = ++lastOrderId;
+         //   this.OrderId = ++lastOrderId;
             this.OrderBoughtDateTime = DateTime.Now;
             this.Customer = cust;
             this.Jewels = jewelryList;

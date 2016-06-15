@@ -50,14 +50,14 @@ namespace Jewelry_Application
 
         public Jewelry(double price) {
 
-            JewelryId = ++lastJewelryId;
+     //       JewelryId = ++lastJewelryId;
             this.JewelryPrice = price;
         }
 
         public Jewelry(int price,int discount)
         {
 
-            JewelryId = ++lastJewelryId;
+      //      JewelryId = ++lastJewelryId;
             this.JewelryPrice = price;
             this.JewelryDiscount = discount;
         }
