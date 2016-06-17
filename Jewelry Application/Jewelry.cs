@@ -42,6 +42,7 @@ namespace Jewelry_Application
         public CategoryJewelry JewelryCategory { get; set; }
         public double JewelryDiscount { get; private set; }
         public string JewelryCode { get; set; }
+        public virtual ICollection<Order> Orders { get; set; }
         #endregion
 
         #region Constructor
@@ -50,14 +51,14 @@ namespace Jewelry_Application
 
         public Jewelry(double price) {
 
-     //       JewelryId = ++lastJewelryId;
+   //         JewelryId = ++lastJewelryId;
             this.JewelryPrice = price;
         }
 
         public Jewelry(int price,int discount)
         {
 
-      //      JewelryId = ++lastJewelryId;
+     //       JewelryId = ++lastJewelryId;
             this.JewelryPrice = price;
             this.JewelryDiscount = discount;
         }

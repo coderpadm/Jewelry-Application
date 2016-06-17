@@ -104,27 +104,33 @@ namespace Jewelry_Application
 
         private static Customer VerifyCustomer()
         {
-            Customer customer;
-            Console.Write("What is the email address of the Customer?\n");
-            var emailAddress = Console.ReadLine();
+            Customer customer=null;
+            try {
+                Console.Write("What is the email address of the Customer?\n");
+                var emailAddress = Console.ReadLine();
 
-            customer = Jeweler.FindCustomer(emailAddress);
-            if (customer == null)
-            {
+                customer = Jeweler.FindCustomer(emailAddress);
+                if (customer == null)
+                {
 
-                CreateCustomer(emailAddress);
+                    customer = CreateCustomer(emailAddress);
+                }
             }
-
+            catch(ArgumentNullException ax)
+            {
+                Console.WriteLine("Failed - {0}" , ax.ParamName);
+            }
             return customer;
         }
 
         private static Jewelry CreateJewel()
         {
-            Jewelry jewel;
+            Jewelry jewel=null;
             string jCode;
-            jewel=VerifyJewel( out jCode);
             try
             {
+                jewel =VerifyJewel( out jCode);
+           
                 if (jewel == null)
                 {
                     Console.WriteLine("A jewel with that code is not available. A new jewel with that code is being created.\n");
@@ -178,12 +184,17 @@ namespace Jewelry_Application
 
                 }
             }
+            catch(ArgumentNullException axe)
+            {
+                Console.WriteLine("Failed - {0}",axe.ParamName);
+            }
+
             catch (DbEntityValidationException dbe)
             {
 
                 Console.WriteLine("Failed creating the jewel - {0}" , dbe.Message);
             }
-            catch (Exception)
+            catch (Exception e)
             {
 
                 throw;

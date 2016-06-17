@@ -77,7 +77,10 @@ namespace Jewelry_Application
         /// <returns>Customer object associated with that email address</returns>
         public static Customer FindCustomer(string email)
         {
-
+            if(string.IsNullOrEmpty(email))
+            {
+                throw new ArgumentNullException("Email address cannot be empty");
+            }
             return db.Customers.Where(a => a.CustomerEmail == email).FirstOrDefault();
         }
 
@@ -88,6 +91,10 @@ namespace Jewelry_Application
         /// <returns>Jewelry object associated with that jewel code</returns>
         public static Jewelry FindJewel(string jewelCode)
         {
+            if(string.IsNullOrEmpty(jewelCode))
+            {
+                throw new ArgumentNullException("Jewel code cannot be empty");
+            }
             return db.Jewels.Where(j => j.JewelryCode == jewelCode).FirstOrDefault();
         }
 

@@ -29,9 +29,11 @@ namespace Jewelry_Application
         #endregion
 
         #region Constructor
+        public Order() { }
+
         public Order(Customer cust, List<Jewelry> jewelryList)
         {
-         //   this.OrderId = ++lastOrderId;
+     //       this.OrderId = ++lastOrderId;
             this.OrderBoughtDateTime = DateTime.Now;
             this.Customer = cust;
             this.Jewels = jewelryList;
