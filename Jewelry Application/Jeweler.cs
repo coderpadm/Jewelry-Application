@@ -112,6 +112,11 @@ namespace Jewelry_Application
             db.SaveChanges();
             return ord;
         }
+
+        public static Order[] GetAllOrders(string emailAddress)
+        {
+            return db.Orders.Where(b => b.Customer.CustomerEmail == emailAddress).ToArray();
+        }
     }
 }
 

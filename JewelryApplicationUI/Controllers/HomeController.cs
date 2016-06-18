@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Jewelry_Application;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -18,6 +19,13 @@ namespace JewelryApplicationUI.Controllers
             ViewBag.Message = "Your application description page.";
 
             return View();
+        }
+
+        [Authorize]
+        public ActionResult Orders()
+        {
+            var orders=Jeweler.GetAllOrders(HttpContext.User.Identity.Name); //User name
+            return View(orders);
         }
 
         public ActionResult Contact()
